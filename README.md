@@ -204,9 +204,7 @@ const translations = {
 2. Add language toggle logic in components
 3. Update language switching UI
 
-## 📝 Contributing
-
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+## 📝 Development
 
 ### Development Workflow
 1. Fork the repository
@@ -241,14 +239,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 - **Privacy**: privacy@barberapp.com
 - **Legal**: legal@barberapp.com
 - **Cookies**: cookies@barberapp.com
-
-## 🙏 Acknowledgments
-
-- [shadcn/ui](https://ui.shadcn.com/) for the amazing component library
-- [Lucide](https://lucide.dev/) for beautiful icons
-- [Tailwind CSS](https://tailwindcss.com/) for the utility-first CSS framework
-- [Framer Motion](https://www.framer.com/motion/) for smooth animations
-- [Next.js](https://nextjs.org/) team for the excellent framework
 
 ---
 
