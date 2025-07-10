@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import {
@@ -13,6 +13,9 @@ import {
   User,
   Settings,
   Calendar,
+  ZoomIn,
+  ZoomOut,
+  RotateCcw,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
@@ -212,6 +215,12 @@ interface GuideModalProps {
 
 export default function GuideModal({ isOpen, onClose, guideId, language = "es" }: GuideModalProps) {
   const [currentStep, setCurrentStep] = useState(0)
+  const [isZoomOpen, setIsZoomOpen] = useState(false)
+  const [zoomImage, setZoomImage] = useState({ src: "", alt: "" })
+  const [zoomLevel, setZoomLevel] = useState(1)
+  const [position, setPosition] = useState({ x: 0, y: 0 })
+  const [isDragging, setIsDragging] = useState(false)
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 })
   const guide = guidesData[guideId]
 
   if (!guide) return null
@@ -234,16 +243,116 @@ export default function GuideModal({ isOpen, onClose, guideId, language = "es" }
     setCurrentStep(stepIndex)
   }
 
+  const openZoom = (src: string, alt: string) => {
+    setZoomImage({ src, alt })
+    setZoomLevel(1)
+    setPosition({ x: 0, y: 0 })
+    setIsZoomOpen(true)
+  }
+
+  const closeZoom = () => {
+    setIsZoomOpen(false)
+    setZoomLevel(1)
+    setPosition({ x: 0, y: 0 })
+    setIsDragging(false)
+  }
+
+  const handleZoomIn = () => {
+    setZoomLevel(prev => Math.min(prev + 0.5, 3))
+  }
+
+  const handleZoomOut = () => {
+    setZoomLevel(prev => Math.max(prev - 0.5, 0.5))
+    if (zoomLevel <= 1) {
+      setPosition({ x: 0, y: 0 })
+    }
+  }
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (zoomLevel > 1) {
+      setIsDragging(true)
+      setDragStart({
+        x: e.clientX - position.x,
+        y: e.clientY - position.y
+      })
+    }
+  }
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (isDragging && zoomLevel > 1) {
+      setPosition({
+        x: e.clientX - dragStart.x,
+        y: e.clientY - dragStart.y
+      })
+    }
+  }
+
+  const handleMouseUp = () => {
+    setIsDragging(false)
+  }
+
+  const resetZoom = () => {
+    setZoomLevel(1)
+    setPosition({ x: 0, y: 0 })
+  }
+
+  const handleWheel = (e: React.WheelEvent) => {
+    e.preventDefault()
+    const delta = e.deltaY > 0 ? -0.2 : 0.2
+    const newZoom = Math.min(Math.max(zoomLevel + delta, 0.5), 3)
+    setZoomLevel(newZoom)
+    
+    if (newZoom <= 1) {
+      setPosition({ x: 0, y: 0 })
+    }
+  }
+
+  // Handle keyboard shortcuts for zoom modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isZoomOpen) return
+
+      switch (e.key) {
+        case "Escape":
+          closeZoom()
+          break
+        case "+":
+        case "=":
+          if (zoomLevel < 3) handleZoomIn()
+          break
+        case "-":
+          if (zoomLevel > 0.5) handleZoomOut()
+          break
+        case "0":
+          resetZoom()
+          break
+      }
+    }
+
+    if (isZoomOpen) {
+      document.addEventListener("keydown", handleKeyDown)
+      // Prevent body scroll when zoom is open
+      document.body.style.overflow = "hidden"
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown)
+      document.body.style.overflow = ""
+    }
+  }, [isZoomOpen, zoomLevel])
+
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
-          onClick={onClose}
-        >
+    <>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            key="guide-modal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
+            onClick={onClose}
+          >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -340,15 +449,28 @@ export default function GuideModal({ isOpen, onClose, guideId, language = "es" }
                       </div>
 
                       {/* Image */}
-                      <div className="mb-6 rounded-xl overflow-hidden border">
+                      <div className="mb-6 rounded-xl overflow-hidden border relative group cursor-pointer" 
+                           onClick={() => openZoom(guide.steps[currentStep].image, guide.steps[currentStep].title)}>
                         <Image
                           src={guide.steps[currentStep].image}
                           alt={guide.steps[currentStep].title}
                           width={1200}
                           height={800}
-                          className="w-full h-auto"
+                          className="w-full h-auto transition-transform group-hover:scale-105"
                           priority
                         />
+                        {/* Zoom overlay */}
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg">
+                            <ZoomIn className="size-6 text-gray-700" />
+                          </div>
+                        </div>
+                        {/* Zoom hint */}
+                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1 text-sm text-gray-700 shadow-lg">
+                            Click para ampliar
+                          </div>
+                        </div>
                       </div>
 
                       {/* Tips */}
@@ -416,8 +538,121 @@ export default function GuideModal({ isOpen, onClose, guideId, language = "es" }
               )}
             </div>
           </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+                  </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Zoom Modal */}
+      <AnimatePresence>
+        {isZoomOpen && (
+          <motion.div
+            key="zoom-modal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] bg-black/95 flex items-center justify-center"
+            onClick={closeZoom}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative w-full h-full flex items-center justify-center overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
+            >
+              {/* Top Controls */}
+              <div className="absolute top-4 left-4 right-4 z-10 flex justify-between items-center">
+                <div className="flex gap-2">
+                  <Button
+                    variant="secondary"
+                    size="icon"
+                    className="bg-background/90 hover:bg-background border shadow-lg backdrop-blur-sm"
+                    onClick={handleZoomOut}
+                    disabled={zoomLevel <= 0.5}
+                  >
+                    <ZoomOut className="size-5" />
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    size="icon"
+                    className="bg-background/90 hover:bg-background border shadow-lg backdrop-blur-sm"
+                    onClick={handleZoomIn}
+                    disabled={zoomLevel >= 3}
+                  >
+                    <ZoomIn className="size-5" />
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    size="icon"
+                    className="bg-background/90 hover:bg-background border shadow-lg backdrop-blur-sm"
+                    onClick={resetZoom}
+                  >
+                    <RotateCcw className="size-5" />
+                  </Button>
+                </div>
+                
+                <div className="flex items-center gap-2">
+                  <div className="bg-background/90 backdrop-blur-sm rounded-lg px-3 py-1 text-sm text-foreground border shadow-lg">
+                    {Math.round(zoomLevel * 100)}%
+                  </div>
+                  <Button
+                    variant="secondary"
+                    size="icon"
+                    className="bg-background/90 hover:bg-background border shadow-lg backdrop-blur-sm"
+                    onClick={closeZoom}
+                  >
+                    <X className="size-5" />
+                  </Button>
+                </div>
+              </div>
+
+              {/* Image Container */}
+              <div 
+                className="relative flex items-center justify-center w-full h-full"
+                style={{ 
+                  cursor: zoomLevel > 1 ? (isDragging ? 'grabbing' : 'grab') : 'default'
+                }}
+                onWheel={handleWheel}
+              >
+                <Image
+                  src={zoomImage.src}
+                  alt={zoomImage.alt}
+                  width={1600}
+                  height={1200}
+                  className="max-w-none transition-transform duration-200 select-none"
+                  style={{
+                    transform: `scale(${zoomLevel}) translate(${position.x / zoomLevel}px, ${position.y / zoomLevel}px)`,
+                    maxWidth: zoomLevel === 1 ? '95vw' : 'none',
+                    maxHeight: zoomLevel === 1 ? '95vh' : 'none',
+                    width: zoomLevel === 1 ? 'auto' : '100vw',
+                    height: zoomLevel === 1 ? 'auto' : '100vh',
+                    objectFit: zoomLevel === 1 ? 'contain' : 'cover'
+                  }}
+                  onMouseDown={handleMouseDown}
+                  draggable={false}
+                  priority
+                />
+              </div>
+              
+              {/* Bottom Info */}
+              <div className="absolute bottom-4 left-4 right-4 z-10">
+                <div className="bg-background/90 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg border">
+                  <p className="text-foreground font-medium text-center">{zoomImage.alt}</p>
+                  <div className="text-muted-foreground text-xs text-center mt-1 space-y-1">
+                    {zoomLevel > 1 && (
+                      <p>Arrastra para mover • Rueda del mouse para zoom</p>
+                    )}
+                    <p>Atajos: + (zoom in) • - (zoom out) • 0 (reset) • Esc (cerrar)</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   )
 } 
