@@ -322,7 +322,7 @@ export default function IntegrationsPage() {
     const message = language === "es" 
       ? "¡Hola! Me interesa conocer más sobre las integraciones de BarberApp. ¿Podrían darme más información?"
       : "Hello! I'm interested in learning more about BarberApp integrations. Could you give me more information?"
-    window.open(`https://wa.me/1234567890?text=${encodeURIComponent(message)}`, "_blank")
+    window.open(`https://wa.me/573102566276?text=${encodeURIComponent(message)}`, "_blank")
   }
 
   const paymentIntegrations = [

@@ -445,7 +445,7 @@ export default function GuidesPage() {
               size="lg" 
               variant="secondary" 
               className="rounded-full"
-              onClick={() => window.open('https://wa.me/1234567890', '_blank')}
+              onClick={() => window.open('https://wa.me/573102566276', '_blank')}
             >
               {language === "es" ? "Contactar Soporte" : "Contact Support"}
             </Button>

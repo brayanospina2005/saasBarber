@@ -22,6 +22,7 @@ import {
   Clock,
   Languages,
   HelpCircle,
+  BookOpen,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -49,6 +50,7 @@ const translations = {
       "La aplicación todo-en-uno que ayuda a las barberías a gestionar citas, clientes y pagos. Simplifica tus procesos y enfócate en lo que más importa: tus clientes.",
     startFreeTrial: "Obtener BarberApp",
     bookDemo: "Ver Demo",
+    appGuide: "Guía de la App",
     noCreditCard: "Sin tarjetas de crédito",
     oneTimePaymentHero: "Único pago",
     personalizedAdvice: "Asesoría personalizada",
@@ -161,6 +163,7 @@ const translations = {
       "The all-in-one app that helps barbershops manage appointments, clients, and payments. Streamline your processes and focus on what matters most: your clients.",
     startFreeTrial: "Get BarberApp",
     bookDemo: "Book Demo",
+    appGuide: "App Guide",
     noCreditCard: "No credit cards",
     oneTimePaymentHero: "One-time payment",
     personalizedAdvice: "Personalized consulting",
@@ -312,8 +315,17 @@ export default function LandingPage() {
       language === "es"
         ? "¡Hola! Me interesa BarberApp para mi barbería. ¿Podrían darme más información?"
         : "Hello! I'm interested in BarberApp for my barbershop. Could you give me more information?"
-    const whatsappUrl = `https://wa.me/1234567890?text=${encodeURIComponent(message)}`
+    const whatsappUrl = `https://wa.me/573102566276?text=${encodeURIComponent(message)}`
     window.open(whatsappUrl, "_blank")
+  }
+
+  const openDemo = () => {
+    window.open("https://barberbooking-kappa.vercel.app", "_blank")
+  }
+
+  const openAppGuide = () => {
+    // Redirigir a la página de guías
+    window.location.href = "/guides"
   }
 
   const scrollToTop = () => {
@@ -588,9 +600,18 @@ export default function LandingPage() {
                   size="lg"
                   variant="outline"
                   className="rounded-full h-12 px-8 text-base bg-transparent"
-                  onClick={openWhatsApp}
+                  onClick={openDemo}
                 >
                   {t.bookDemo}
+                </Button>
+                <Button
+                  size="lg"
+                  variant="secondary"
+                  className="rounded-full h-12 px-8 text-base"
+                  onClick={openAppGuide}
+                >
+                  <BookOpen className="mr-2 size-4" />
+                  {t.appGuide}
                 </Button>
               </div>
               <div className="flex items-center justify-center gap-4 mt-6 text-sm text-muted-foreground">
@@ -1060,7 +1081,7 @@ export default function LandingPage() {
               <h4 className="text-sm font-bold">{t.resources}</h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href="/documentation" className="text-muted-foreground hover:text-foreground transition-colors">
                     {t.documentation}
                   </Link>
                 </li>
@@ -1113,9 +1134,11 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="flex flex-col gap-4 sm:flex-row justify-between items-center border-t border-border/40 pt-8">
-            <p className="text-xs text-muted-foreground">
-              &copy; {new Date().getFullYear()} BarberApp. {t.allRightsReserved}
-            </p>
+            <div className="flex flex-col sm:flex-row items-center gap-2 text-xs text-muted-foreground">
+              <p>&copy; {new Date().getFullYear()} BarberApp. {t.allRightsReserved}</p>
+              <span className="hidden sm:inline">•</span>
+              <p>Hecho por Brayan Ospina</p>
+            </div>
             <div className="flex gap-4">
               <Link href="/privacy-policy" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
                 {t.privacyPolicy}

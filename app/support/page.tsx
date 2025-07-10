@@ -269,7 +269,7 @@ export default function SupportPage() {
     const message = language === "es" 
       ? "¡Hola! Necesito ayuda con BarberApp. ¿Podrían asistirme?"
       : "Hello! I need help with BarberApp. Could you assist me?"
-    window.open(`https://wa.me/1234567890?text=${encodeURIComponent(message)}`, "_blank")
+    window.open(`https://wa.me/573102566276?text=${encodeURIComponent(message)}`, "_blank")
   }
 
   const faqCategories = [

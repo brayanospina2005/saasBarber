@@ -177,7 +177,7 @@ export default function CookiePolicyPage() {
       language === "es"
         ? "¡Hola! Me interesa BarberApp para mi barbería. ¿Podrían darme más información?"
         : "Hello! I'm interested in BarberApp for my barbershop. Could you give me more information?"
-    const whatsappUrl = `https://wa.me/1234567890?text=${encodeURIComponent(message)}`
+    const whatsappUrl = `https://wa.me/573102566276?text=${encodeURIComponent(message)}`
     window.open(whatsappUrl, "_blank")
   }
 
