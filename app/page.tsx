@@ -273,7 +273,7 @@ export default function LandingPage() {
 
   const dashboardImages = [
     {
-      src: "/images/dashboard-comisiones.png",
+      src: "/images/dashboard-comisiones.webp",
       alt:
         language === "es"
           ? "Dashboard de Comisiones - Estadísticas y ganancias por comisión"
@@ -281,7 +281,7 @@ export default function LandingPage() {
       title: language === "es" ? "Dashboard de Comisiones" : "Commission Dashboard",
     },
     {
-      src: "/images/dashboard-principal.png",
+      src: "/images/dashboard-principal.webp",
       alt:
         language === "es"
           ? "Dashboard Principal - Resumen de actividad y rendimiento"
@@ -289,7 +289,7 @@ export default function LandingPage() {
       title: language === "es" ? "Dashboard Principal" : "Main Dashboard",
     },
     {
-      src: "/images/calendario-barberia.png",
+      src: "/images/calendario-barberia.webp",
       alt:
         language === "es"
           ? "Calendario de Barbería - Gestión de citas y horarios"
@@ -482,10 +482,7 @@ export default function LandingPage() {
       >
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-2 font-bold">
-            <div className="size-8 rounded-lg bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center text-primary-foreground">
-              <Scissors className="size-4" />
-            </div>
-            <span>BarberApp</span>
+            <Image src="/logo, negro.svg" alt="BarberApp Logo" width={32} height={32} className="size-8" />
           </div>
           <nav className="hidden md:flex gap-8">
             <Link
@@ -654,6 +651,9 @@ export default function LandingPage() {
                           alt={image.alt}
                           className="w-full h-full object-cover object-top"
                           priority={index === 0}
+                          placeholder="blur"
+                          blurDataURL="/images/placeholder.jpg"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1280px"
                         />
                       </div>
                     ))}
@@ -990,10 +990,7 @@ export default function LandingPage() {
           <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
             <div className="space-y-4">
               <div className="flex items-center gap-2 font-bold">
-                <div className="size-8 rounded-lg bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center text-primary-foreground">
-                  <Scissors className="size-4" />
-                </div>
-                <span>BarberApp</span>
+                <Image src="/logo, negro.svg" alt="BarberApp Logo" width={32} height={32} className="size-8" />
               </div>
               <p className="text-sm text-muted-foreground">{t.footerDesc}</p>
               <div className="flex gap-4">

@@ -60,7 +60,7 @@ const guidesData: { [key: string]: GuideData } = {
           id: 1,
           title: "Información del Negocio",
           description: "Completa los datos básicos de tu barbería como nombre, teléfono, email, dirección y horarios de atención.",
-          image: "/images/guides/configuracion-inicial/paso-1-informacion-negocio.jpeg",
+          image: "/images/guides/configuracion-inicial/paso-1-informacion-negocio.webp",
           tips: [
             "Usa un nombre atractivo y fácil de recordar",
             "Asegúrate de que el teléfono esté correcto para recibir llamadas",
@@ -72,7 +72,7 @@ const guidesData: { [key: string]: GuideData } = {
           id: 2,
           title: "Agregar Usuarios",
           description: "Crea cuentas para tu equipo de trabajo. Puedes agregar barberos, recepcionistas y administradores con diferentes permisos.",
-          image: "/images/guides/configuracion-inicial/paso-2-agregar-usuarios.png.jpeg",
+          image: "/images/guides/configuracion-inicial/paso-2-agregar-usuarios.png.webp",
           tips: [
             "Define roles claros para cada usuario",
             "Usa emails reales para notificaciones",
@@ -84,7 +84,7 @@ const guidesData: { [key: string]: GuideData } = {
           id: 3,
           title: "Redes Sociales",
           description: "Conecta tus redes sociales para mostrar tu trabajo y facilitar el contacto con clientes. Instagram, Facebook, WhatsApp y TikTok.",
-          image: "/images/guides/configuracion-inicial/paso-3-redes-sociales.jpeg",
+          image: "/images/guides/configuracion-inicial/paso-3-redes-sociales.webp",
           tips: [
             "Instagram es clave para mostrar tu trabajo",
             "WhatsApp facilita la comunicación directa",
@@ -96,7 +96,7 @@ const guidesData: { [key: string]: GuideData } = {
           id: 4,
           title: "Configuración del Sistema",
           description: "Personaliza las funcionalidades según tus necesidades: comisiones, recordatorios, horarios especiales y políticas de reserva.",
-          image: "/images/guides/configuracion-inicial/paso-4-configuracion-sistema.jpeg",
+          image: "/images/guides/configuracion-inicial/paso-4-configuracion-sistema.webp",
           tips: [
             "Configura el tiempo límite de reservas según tu flujo de trabajo",
             "Activa recordatorios para reducir ausencias",
@@ -117,7 +117,7 @@ const guidesData: { [key: string]: GuideData } = {
         id: 1,
         title: "Elegir Servicio",
         description: "Comienza seleccionando el tipo de servicio que el cliente desea. Puedes ver todos los servicios disponibles con sus precios y duración.",
-        image: "/images/guides/tu-primera-reserva/paso-1-elegir-servicio.jpeg",
+        image: "/images/guides/tu-primera-reserva/paso-1-elegir-servicio.webp",
         tips: [
           "Revisa que los precios estén actualizados",
           "Considera el tiempo de cada servicio",
@@ -129,7 +129,7 @@ const guidesData: { [key: string]: GuideData } = {
         id: 2,
         title: "Elegir Barbero",
         description: "Selecciona el barbero que realizará el servicio. Cada barbero puede tener especialidades diferentes.",
-        image: "/images/guides/tu-primera-reserva/paso-2-elegir-barbero.jpeg",
+        image: "/images/guides/tu-primera-reserva/paso-2-elegir-barbero.webp",
         tips: [
           "Considera las especialidades de cada barbero",
           "Verifica la disponibilidad del barbero",
@@ -141,7 +141,7 @@ const guidesData: { [key: string]: GuideData } = {
         id: 3,
         title: "Elegir Fecha y Hora",
         description: "Selecciona la fecha y hora conveniente para la cita. Solo aparecerán los horarios disponibles del barbero elegido.",
-        image: "/images/guides/tu-primera-reserva/paso-3-elegir-fecha.jpeg",
+        image: "/images/guides/tu-primera-reserva/paso-3-elegir-fecha.webp",
         tips: [
           "Los horarios mostrados ya consideran la duración del servicio",
           "Evita horarios muy ajustados entre citas",
@@ -153,7 +153,7 @@ const guidesData: { [key: string]: GuideData } = {
         id: 4,
         title: "Confirmar Reserva",
         description: "Revisa todos los detalles de la reserva: servicio, barbero, fecha, hora y precio. Confirma para completar la reserva.",
-        image: "/images/guides/tu-primera-reserva/paso-4-confirmar.reserva.jpeg",
+        image: "/images/guides/tu-primera-reserva/paso-4-confirmar.reserva.webp",
         tips: [
           "Verifica todos los datos antes de confirmar",
           "El cliente recibirá una notificación automática",
@@ -174,7 +174,7 @@ const guidesData: { [key: string]: GuideData } = {
         id: 1,
         title: "Información Personal y Foto",
         description: "Completa tu información personal: nombre, foto de perfil, descripción profesional y datos de contacto para que los clientes te conozcan.",
-        image: "/images/guides/configurar-perfil/paso-1.jpeg",
+        image: "/images/guides/configurar-perfil/paso-1.webp",
         tips: [
           "Usa una foto profesional de buena calidad",
           "Escribe una descripción que destaque tu experiencia",
@@ -187,7 +187,7 @@ const guidesData: { [key: string]: GuideData } = {
         id: 2,
         title: "Especialidades y Servicios",
         description: "Define tus especialidades, servicios que ofreces, precios y tiempo de duración. Esto ayuda a los clientes a elegir el servicio adecuado.",
-        image: "/images/guides/configurar-perfil/paso-2.jpeg",
+        image: "/images/guides/configurar-perfil/paso-2.webp",
         tips: [
           "Sé específico con tus especialidades (fade, beard, vintage, etc.)",
           "Establece precios competitivos según tu experiencia",
@@ -200,7 +200,7 @@ const guidesData: { [key: string]: GuideData } = {
         id: 3,
         title: "Portfolio de Trabajos",
         description: "Sube fotos de tu mejor trabajo para mostrar tu estilo y calidad. Un buen portfolio es la mejor forma de atraer nuevos clientes.",
-        image: "/images/guides/configurar-perfil/paso-3.jpeg",
+        image: "/images/guides/configurar-perfil/paso-3.webp",
         tips: [
           "Usa fotos de alta calidad con buena iluminación",
           "Muestra variedad de estilos y técnicas",
@@ -223,7 +223,7 @@ const guidesData: { [key: string]: GuideData } = {
         id: 1,
         title: "Interfaz Principal del Calendario",
         description: "Conoce la interfaz principal del calendario donde puedes ver todas tus citas programadas, navegar entre fechas y obtener una vista general de tu agenda diaria y semanal.",
-        image: "/images/guides/calendario-funcionalidad/diseno-1.jpeg",
+        image: "/images/guides/calendario-funcionalidad/diseno-1.webp",
         tips: [
           "La vista principal muestra todas las citas del día de forma organizada",
           "Puedes navegar fácilmente entre diferentes fechas",
@@ -236,7 +236,7 @@ const guidesData: { [key: string]: GuideData } = {
         id: 2,
         title: "Programación y Gestión de Citas",
         description: "Descubre cómo programar nuevas citas, gestionar las existentes y optimizar tu agenda para maximizar la productividad de tu barbería.",
-        image: "/images/guides/calendario-funcionalidad/diseno-2.jpeg",
+        image: "/images/guides/calendario-funcionalidad/diseno-2.webp",
         tips: [
           "Programa citas de manera eficiente evitando conflictos de horario",
           "Gestiona la información completa de cada cliente y servicio",
@@ -249,7 +249,7 @@ const guidesData: { [key: string]: GuideData } = {
         id: 3,
         title: "Vista Detallada y Configuraciones",
         description: "Explora las opciones avanzadas del calendario, configuraciones personalizadas y herramientas adicionales para una gestión completa de tu agenda.",
-        image: "/images/guides/calendario-funcionalidad/diseno-3.jpeg",
+        image: "/images/guides/calendario-funcionalidad/diseno-3.webp",
         tips: [
           "Personaliza la vista del calendario según tus necesidades",
           "Configura recordatorios automáticos para citas importantes",
@@ -271,7 +271,7 @@ const guidesData: { [key: string]: GuideData } = {
         id: 1,
         title: "Base de Datos de Clientes",
         description: "Explora cómo organizar y gestionar tu base de datos completa de clientes con toda su información personal, historial de servicios y preferencias.",
-        image: "/images/guides/gestion-clientes/clientes-db.jpeg",
+        image: "/images/guides/gestion-clientes/clientes-db.webp",
         tips: [
           "Mantén perfiles completos con información de contacto actualizada",
           "Registra preferencias de servicios y estilos de cada cliente",
@@ -284,7 +284,7 @@ const guidesData: { [key: string]: GuideData } = {
         id: 2,
         title: "Estadísticas y Análisis de Email",
         description: "Analiza las métricas de comunicación por email con tus clientes para mejorar tus estrategias de marketing y retención.",
-        image: "/images/guides/gestion-clientes/email-stats.jpeg",
+        image: "/images/guides/gestion-clientes/email-stats.webp",
         tips: [
           "Revisa las tasas de apertura de tus emails promocionales",
           "Analiza qué tipo de contenido genera más engagement",
@@ -297,7 +297,7 @@ const guidesData: { [key: string]: GuideData } = {
         id: 3,
         title: "Comunicación Personalizada - Cumpleaños",
         description: "Implementa estrategias automáticas para felicitar a tus clientes en fechas especiales y mantener una relación cercana y personalizada.",
-        image: "/images/guides/gestion-clientes/birthday.jpeg",
+        image: "/images/guides/gestion-clientes/birthday.webp",
         tips: [
           "Configura mensajes automáticos de cumpleaños con ofertas especiales",
           "Personaliza cada mensaje con el nombre del cliente",

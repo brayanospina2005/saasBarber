@@ -28,6 +28,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import Image from "next/image"
 
 const translations = {
   es: {
@@ -297,10 +298,7 @@ export default function SupportPage() {
               </Button>
             </Link>
             <div className="flex items-center gap-2 font-bold">
-              <div className="size-8 rounded-lg bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center text-primary-foreground">
-                <Scissors className="size-4" />
-              </div>
-              <span>BarberApp</span>
+              <Image src="/logo, negro.svg" alt="BarberApp Logo" width={32} height={32} className="size-8" />
             </div>
           </div>
         </div>
