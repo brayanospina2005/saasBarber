@@ -8,8 +8,8 @@ import { Analytics } from "@vercel/analytics/next"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "SaaSify - Streamline Your Workflow",
-  description: "Boost productivity, reduce costs, and scale your business with our all-in-one SaaS platform.",
+  title: "BarberAPP - BrayanCode",
+  description: "Booking system for barber shops.",
   generator: 'v0.dev',
   icons: {
     icon: [
