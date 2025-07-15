@@ -905,9 +905,9 @@ export default function GuideModal({ isOpen, onClose, guideId, language = "es" }
               </div>
             </div>
 
-            <div className="flex h-[calc(90vh-120px)]">
+            <div className="flex flex-col md:flex-row h-[calc(90vh-120px)]">
               {/* Sidebar - Lista de Pasos */}
-              <div className="w-80 border-r bg-muted/20 overflow-y-auto">
+              <div className="w-full md:w-80 border-b md:border-b-0 md:border-r bg-muted/20 overflow-x-auto md:overflow-y-auto">
                 <div className="p-4">
                   <div className="mb-4">
                     <Progress value={progress} className="mb-2" />
@@ -915,19 +915,19 @@ export default function GuideModal({ isOpen, onClose, guideId, language = "es" }
                       Paso {currentStep + 1} de {guide.steps.length}
                     </p>
                   </div>
-                  
-                  <div className="space-y-2">
+                  <div className="space-y-2 md:space-y-2 flex md:block flex-row gap-2 md:gap-0 overflow-x-auto">
                     {guide.steps.map((step, index) => (
                       <button
                         key={step.id}
                         onClick={() => goToStep(index)}
-                        className={`w-full text-left p-3 rounded-lg transition-all ${
+                        className={`min-w-[180px] md:min-w-0 w-full text-left p-3 rounded-lg transition-all ${
                           index === currentStep
                             ? "bg-primary text-primary-foreground"
                             : index < currentStep
                             ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
                             : "bg-background hover:bg-muted"
                         }`}
+                        style={{ marginRight: '8px' }}
                       >
                         <div className="flex items-center gap-3">
                           <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
@@ -952,7 +952,7 @@ export default function GuideModal({ isOpen, onClose, guideId, language = "es" }
 
               {/* Main Content */}
               <div className="flex-1 overflow-y-auto">
-                <div className="p-6">
+                <div className="p-4 md:p-6">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={currentStep}
